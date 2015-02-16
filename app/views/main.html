@@ -1,0 +1,20 @@
+<div class="row">
+  <!--<pre>{{userData| json}}</pre>-->
+  <user-action></user-action>
+  <div class="post-list" ng-repeat="post in posts" ng-swipe-right="deletePost(post)" ng-dblclick="editMode = true">
+    <!--<pre>{{post|json}}</pre>-->
+    <div ng-hide="editMode">
+      <h5 class="subheader title">{{post.title}}</h5>
+      <p class="description">{{post.description}}</p>
+    </div>
+    <div ng-show="editMode">
+      <input type="hidden" name="pid" ng-model="post.id">
+      <input type="text" ng-model="post.title">
+      <input type="text" ng-model="post.description">
+      <span ng-click="editMode = false" class="right button tiny alert"> Cancel</span>
+      <span ng-click="editPost(post); editMode = false" class="left button tiny"> Edit</span>
+    </div>
+  </div>
+  <hr>
+  <add-item ></add-item>
+</div>

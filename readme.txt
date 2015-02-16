@@ -1,0 +1,3 @@
+Firebase
+vpriscu@pitechnologies.ro
+123456qwe
