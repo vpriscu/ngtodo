@@ -11,7 +11,6 @@ angular.module('ngtodoApp')
   .controller('MainCtrl', ['$scope', '$firebase', '$location',function($scope, $firebase, $location) {
       var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/posts');
       
-      $scope.posts;
       var sync = $firebase(ref);
       var postArray = sync.$asArray();
       
@@ -19,12 +18,12 @@ angular.module('ngtodoApp')
       
       $scope.makePostData = function(post) {
         var userData = $scope.AuthStatus();
-        ref.push({
-          title: post.title,
-          description: post.description,
-          priority: post.priority,
-          uid: userData.uid
-        });
+        $scope.posts.$add({
+          title: $scope.post.title,
+          description: $scope.post.description
+        })
+        $scope.post.title = '';
+        $scope.post.description = '';
       };
       
       $scope.deletePost = function(post) {
@@ -58,4 +57,5 @@ angular.module('ngtodoApp')
       $scope.Logout = function () {
         ref.unauth();
       };
+      
   }]);

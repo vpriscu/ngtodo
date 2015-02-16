@@ -10,10 +10,8 @@
 angular.module('ngtodoApp')
         .controller('UserCtrl', ['$scope', '$location',function($scope, $location) {
           var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/');
-          $scope.SignIn = function (user) {
-            event.preventDefault();  // To prevent form refresh
-            var username = $scope.user.email;
-            var password = $scope.user.password;
+          $scope.SignIn = function () {
+//            event.preventDefault();  // To prevent form refresh
             ref.authWithPassword({
               email: $scope.user.email,
               password: $scope.user.password
@@ -21,14 +19,13 @@ angular.module('ngtodoApp')
               if (error) {
                 console.log('Login Failed!', error);
               } else {
-                console.log('Authenticated successfully with payload:', authData);
                 $location.path('/');
+//                console.log('Authenticated successfully with payload:', authData);
               }
             });
           };
 
-          $scope.Create = function (event) {
-            event.preventDefault();  // To prevent form refresh
+          $scope.Create = function () {
             ref.createUser({
               email: $scope.user.email,
               password: $scope.user.password
@@ -102,12 +99,14 @@ angular.module('ngtodoApp')
             if (authData) {
               Scope.user = authData;
             } else {
-              console.log("User is logged out");
+              console.log('User is logged out ');
             }
           };
           
           $scope.Logout = function (event) {
             ref.unauth();
+            $location.path('/');
+            $location.replace();
           };
           
         }]);
