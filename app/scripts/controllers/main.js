@@ -58,5 +58,4 @@ angular.module('ngtodoApp')
       $scope.Logout = function () {
         ref.unauth();
       };
-      
   }]);
