@@ -7,12 +7,18 @@
  * # userAction
  */
 angular.module('ngtodoApp')
-  .directive('userAction', function () {
+  .directive('userAction', function ($location) {
     return {
       restrict: 'E',
       templateUrl: '/views/directives/user-action.html',
-      link: function postLink(scope) {
-        scope.AuthStatus();
+      scope: true,
+      link: function postLink($scope, $location, userHandler) {
+        $('#logout').on('click', function() {
+          var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/users');
+          ref.unauth();
+          $location.path('/user');
+        });
+      
       }
     };
   });

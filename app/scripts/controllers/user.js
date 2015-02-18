@@ -8,22 +8,18 @@
  * Controller of the ngtodoApp
  */
 angular.module('ngtodoApp')
-        .controller('UserCtrl', ['$scope', '$location',function($scope, $location) {
+        .controller('UserCtrl', ['$scope', '$location', 'userHandler',function($scope, $location, userHandler) {
           var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/');
-          $scope.SignIn = function () {
-//            event.preventDefault();  // To prevent form refresh
-            ref.authWithPassword({
-              email: $scope.user.email,
-              password: $scope.user.password
-            }, function (error, authData) {
-              if (error) {
-                console.log('Login Failed!', error);
-              } else {
-                $location.path('/');
-//                console.log('Authenticated successfully with payload:', authData);
-              }
-            });
-          };
+          $scope.callLogin = function() {
+            console.log($scope.user);
+            userHandler.SignIn($scope.user)
+            if(userHandler.AuthStatus() !== false) {
+              $location.path('/');
+            }
+          }
+          if (userHandler.AuthStatus() !== false) {            
+            $location.path('/');
+          }
 
           $scope.Create = function () {
             ref.createUser({
@@ -94,19 +90,17 @@ angular.module('ngtodoApp')
             });
           };
           
-          $scope.AuthStatus = function (event) {
-            var authData = ref.getAuth();
-            if (authData) {
-              Scope.user = authData;
-            } else {
-              console.log('User is logged out ');
-            }
-          };
+//          $scope.AuthStatus = function (event) {
+//            var authData = ref.getAuth();
+//            if (authData) {
+//              Scope.user = authData;
+//            } else {
+//              console.log('User is logged out ');
+//            }
+//          };
           
-          $scope.Logout = function (event) {
-            ref.unauth();
-            $location.path('/');
-            $location.replace();
+          $scope.callLogout = function () {
+            userHandler.Logout();
           };
           
         }]);

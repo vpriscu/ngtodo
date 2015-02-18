@@ -1,23 +1,28 @@
-<div class="row">
-  <!--<pre>{{userData| json}}</pre>-->
-  <user-action></user-action>
-  <div class="collection with-header">
-    <div class="collection-header"><h5>List of items</h5></div>
-    <div class="post-list collection-item" ng-repeat="post in posts" ng-swipe-right="deletePost(post)" ng-dblclick="editMode = true" ng-class="{'z-depth-3':editMode === true}">
-      <!--<pre>{{post|json}}</pre>-->
-      <div ng-hide="editMode">
-        <h5 class="subheader title">{{post.title}}</h5>
-        <p class="description">{{post.description}}</p>
+<!--<pre>{{userData| json}}</pre>-->
+<div class="collection with-header">
+  <div class="collection-header"><h5>List of items</h5></div>
+  <div class="post-list collection-item" ng-repeat="post in posts" ng-swipe-right="deletePost(post)" ng-swipe-left="markDone(post)" ng-dblclick="editMode = true;" ng-class="{'z-depth-3':editMode === true, 'item-done': post.done == 1}">
+    <!--<pre>{{post|json}}</pre>-->
+    <div ng-hide="editMode">
+      <h5 class="subheader title">{{post.title}}</h5>
+      <p class="description">{{post.description}}</p>
+    </div>
+    <div ng-show="editMode"class="edit-post">
+      <input type="hidden" name="pid" ng-model="post.id">
+      <div class="input-field">
+        <label for="title">Title</label>
+        <input type="text" ng-model="post.title" required>
       </div>
-      <div ng-show="editMode">
-        <input type="hidden" name="pid" ng-model="post.id">
-        <input type="text" ng-model="post.title">
-        <input type="text" ng-model="post.description">
-        <span ng-click="editMode = false" class="right button tiny alert"> Cancel</span>
-        <span ng-click="editPost(post);
-                editMode = false" class="left button tiny"> Edit</span>
+      <div class="input-field">
+        <label for="title">Description</label>
+        <input type="text" ng-model="post.description" required>
+      </div>
+      <div class="clearfix">
+        <button ng-click="editMode = false" class="right waves-effect waves-teal btn-flat"> Cancel</button>
+        <button ng-click="editPost(post);
+                  editMode = false" class="left waves-effect waves-teal btn-flat"> Edit</button>
       </div>
     </div>
   </div>
-  <add-item ></add-item>
 </div>
+<add-item ></add-item>

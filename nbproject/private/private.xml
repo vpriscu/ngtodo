@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/projects/ng_todo/app/scripts/app.js</file>
-            <file>file:/D:/projects/ng_todo/app/scripts/directives/useraction.js</file>
-            <file>file:/D:/projects/ng_todo/app/scripts/directives/additem.js</file>
-            <file>file:/D:/projects/ng_todo/app/scripts/controllers/about.js</file>
-            <file>file:/D:/projects/ng_todo/app/views/directives/add-item.html</file>
-            <file>file:/D:/projects/ng_todo/app/views/user.html</file>
-            <file>file:/D:/projects/ng_todo/app/scripts/controllers/main.js</file>
-            <file>file:/D:/projects/ng_todo/app/index.html</file>
-            <file>file:/D:/projects/ng_todo/app/scripts/controllers/user.js</file>
-            <file>file:/D:/projects/ng_todo/app/views/main.html</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
