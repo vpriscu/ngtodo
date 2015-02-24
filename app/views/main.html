@@ -1,15 +1,15 @@
 <!--<pre>{{userData| json}}</pre>-->
 <ul class="tabs">
-        <li class="tab col s3"><a href="#/?filter=new" class="active">New</a></li>
-        <li class="tab col s3"><a href="#/?filter=in-progress">In progress</a></li>
-        <li class="tab col s3"><a href="#/?filter=done">Done</a></li>
-        <li class="tab col s3"><a href="#/">Clear</a></li>
-      </ul>
+  <li class="tab col s3"><a href="#/?filter=new" class="active">New</a></li>
+  <li class="tab col s3"><a href="#/?filter=in-progress">In progress</a></li>
+  <li class="tab col s3"><a href="#/?filter=done">Done</a></li>
+  <li class="tab col s3"><a href="#/">Clear</a></li>
+</ul>
 <div class="collection with-header">
   <div class="collection-header"><h5>List of items</h5></div>
-  <div class="post-list collection-item" ng-repeat="post in posts | filter:orderBy.filter" ng-swipe-right="deletePost(post)" ng-swipe-left="markDone(post)" ng-dblclick="editMode = true;" ng-class="{'z-depth-2':editMode === true, 'blue-grey-text text-lighten-4': post.status == 'done'}">
+  <div class="post-list collection-item" ng-repeat="post in posts| filter:orderBy.filter" ng-swipe-right="deletePost(post)" ng-swipe-left="markDone(post)" ng-dblclick="editMode = true;" ng-class="{'z-depth-2':editMode === true, 'blue-grey-text text-lighten-4': post.status == 'done'}">
     <!--<pre>{{post|json}}</pre>-->
-    
+
     <div ng-hide="editMode" class="view-post">
       <!--{{post|json}}-->
       <h5 class="subheader title"> <i ng-class="{'mdi-action-turned-in-not blue-text': post.status == 'new', 'mdi-action-done green-text': post.status == 'done', 'mdi-action-turned-in blue-text': post.status == 'progress'}" class="mdi-action-done"></i> {{post.title}}</h5>
@@ -41,15 +41,15 @@
           <label for="test3">Green</label>
         </span>
       </div>
-      
-      
-      
-      
-      
+
+
+
+
+
 
       <div class="clearfix">
         <button ng-click="editPost(post);
-                  editMode = false" class="left waves-effect waves-teal btn-flat"> Edit</button>
+                editMode = false" class="left waves-effect waves-teal btn-flat"> Edit</button>
         <button ng-click="editMode = false" class="right waves-effect waves-teal btn-flat"> Cancel</button>
       </div>
     </div>

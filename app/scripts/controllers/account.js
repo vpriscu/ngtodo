@@ -19,7 +19,6 @@ angular.module('ngtodoApp')
       userRef.on('value', function (snap) {
         $scope.account = snap.val();
       });
-      console.log($scope.account);
       $scope.addUserData = function (account) {
         userRef.set({
           username: account.username

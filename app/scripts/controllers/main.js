@@ -18,8 +18,7 @@ angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$loc
     }
     $scope.orderBy = $location.search();
     (typeof $scope.orderBy.filter === 'undefined') ? false : $scope.orderBy.filter;
-    $scope.posts = $firebase(ref).$asArray();
-
+    $scope.posts = $firebase(ref.orderByChild('uid').equalTo($scope.userData.uid)).$asArray();
     $scope.makePostData = function (post) {
       ref.push({
         title: $scope.post.title,
