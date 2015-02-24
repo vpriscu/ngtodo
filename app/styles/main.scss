@@ -5,3 +5,11 @@
   -khtml-opacity: 0;
   opacity: 0;
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate)  {
+  & * {
+  display: inline-block !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  }
+}

@@ -7,22 +7,25 @@
  * # MainCtrl
  * Controller of the ngtodoApp
  */
-angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$location', 'userHandler', function ($scope, $firebase, $location, userHandler) {
+angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$location', 'userHandler', '$routeParams', function ($scope, $firebase, $location, userHandler, $routeParams) {
     var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/posts');
+
     $scope.userData = {};
     if (userHandler.AuthStatus() === false) {
       $location.path('/user');
     } else {
       $scope.userData = userHandler.AuthStatus();
     }
-
+    $scope.orderBy = $location.search();
+    (typeof $scope.orderBy.filter === 'undefined') ? false : $scope.orderBy.filter;
     $scope.posts = $firebase(ref).$asArray();
 
     $scope.makePostData = function (post) {
-      var userData = $scope.AuthStatus();
       ref.push({
         title: $scope.post.title,
-        description: $scope.post.description
+        description: $scope.post.description,
+        uid: $scope.userData.uid,
+        status: 'new'
       }, function (error) {
         if (error === null) {
           toast('Item was added', 6000);
@@ -34,28 +37,26 @@ angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$loc
 
     $scope.deletePost = function (post) {
 
-      var userData = $scope.AuthStatus();
       var fredRef = new Firebase('https://ngtodo-vlad.firebaseio.com/posts/' + post.$id);
       fredRef.remove();
     };
 
     $scope.editPost = function (post) {
 
-      var userData = $scope.AuthStatus();
+      console.info(post);
+//      return;
       var fredRef = new Firebase('https://ngtodo-vlad.firebaseio.com/posts/' + post.$id);
       fredRef.update({
         title: post.title,
-        description: post.description
+        description: post.description,
+        status: post.status
       });
     };
 
     $scope.markDone = function (post) {
-      console.log('here');
-      var userData = $scope.AuthStatus();
       var fredRef = new Firebase('https://ngtodo-vlad.firebaseio.com/posts/' + post.$id);
       fredRef.update({
-        done: 1
+        status: 'done'
       });
     };
-    
   }]);

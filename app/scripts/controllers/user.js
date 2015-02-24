@@ -11,7 +11,6 @@ angular.module('ngtodoApp')
         .controller('UserCtrl', ['$scope', '$location', 'userHandler',function($scope, $location, userHandler) {
           var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/');
           $scope.callLogin = function() {
-            console.log($scope.user);
             userHandler.SignIn($scope.user)
             if(userHandler.AuthStatus() !== false) {
               $location.path('/');

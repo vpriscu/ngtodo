@@ -16,9 +16,9 @@ angular.module('ngtodoApp')
         $('#logout').on('click', function() {
           var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/users');
           ref.unauth();
-          $location.path('/user');
         });
       
       }
+      
     };
   });

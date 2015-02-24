@@ -8,7 +8,7 @@
     <label for="password">Password</label>
     <input type="password" ng-model="user.password" name="password" class="blue-border border-darken-1">
     </div>
-    <button class="waves-effect waves-light btn blue darken-1" ng-click="callLogin(user)">Login</button>
+    <button class="waves-effect waves-light btn blue darken-1" ng-click="callLogin(user)" ng-disabled="!user.email || !user.password">Login</button>
     <!--<a href="/user/register" class="waves-effect waves-light btn blue darken-1" >Register</a>-->
   </form>
 </div>

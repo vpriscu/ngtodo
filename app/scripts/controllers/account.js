@@ -15,37 +15,14 @@ angular.module('ngtodoApp')
       } else {
         $scope.userData = userHandler.AuthStatus();
       }
-      
-      
-      
-      $scope.callLogout = function() {
-        userHandler.Logout();
-      }
-      
-      
-//      
-//      $scope.AuthStatus = function () {
-//        var authData = ref.getAuth();
-//        if (authData) {
-//          $scope.userData = authData;
-//          return authData;
-//        } else {
-//          $location.path('/user');
-//          return false;
-//        }
-//      };
-//      $scope.AuthStatus();
-//      $scope.Logout = function () {
-//        ref.unauth();
-//        $location.path('/user');
-//      };
-      
-       $scope.addUserData = function() {
-        var userData = $scope.AuthStatus();
-        var userRef = ref.child(userData.uid);
+      var userRef = ref.child($scope.userData.uid);
+      userRef.on('value', function (snap) {
+        $scope.account = snap.val();
+      });
+      console.log($scope.account);
+      $scope.addUserData = function (account) {
         userRef.set({
-          username: $scope.userData.username
+          username: account.username
         });
       };
-
   }]);

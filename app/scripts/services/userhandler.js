@@ -8,7 +8,7 @@
  * Factory in the ngtodoApp.
  */
 angular.module('ngtodoApp')
-  .factory('userHandler', function ($location) {
+  .factory('userHandler', ['$location', function ($location) {
     // Service logic
     // ...
 
@@ -24,10 +24,10 @@ angular.module('ngtodoApp')
         if (error) {
           console.log('Login Failed!', error);
         } else {
+          location.replace('#/');
           return user;
         }
       });
-      console.log('user should be auth '+user);
     };
     
     factory.AuthStatus = function () {
@@ -46,4 +46,4 @@ angular.module('ngtodoApp')
     };
     // Public API here
     return factory;
-  });
+  }]);
