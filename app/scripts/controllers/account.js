@@ -8,9 +8,9 @@
  * Controller of the ngtodoApp
  */
 angular.module('ngtodoApp')
-  .controller('AccountCtrl', ['$scope', '$firebase', '$location', 'userHandler',function($scope, $firebase, $location, userHandler) {
+    .controller('AccountCtrl', ['$scope', '$firebase', '$location', 'userHandler', function ($scope, $firebase, $location, userHandler) {
       var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/users');
-      if(userHandler.AuthStatus() === false) {
+      if (userHandler.AuthStatus() === false) {
         $location.path('/user');
       } else {
         $scope.userData = userHandler.AuthStatus();
@@ -24,4 +24,4 @@ angular.module('ngtodoApp')
           username: account.username
         });
       };
-  }]);
+    }]);

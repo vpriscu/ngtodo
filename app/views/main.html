@@ -16,7 +16,7 @@
       <p class="description">{{post.description}}</p>
     </div>
     <div ng-show="editMode" class="edit-post">
-      <!--{{post|json}}-->
+      {{post|json}}
       <input type="hidden" name="pid" ng-model="post.id">
       <div class="input-field">
         <label for="title" ng-class="{active: post.title}">Title</label>
@@ -26,27 +26,20 @@
         <label for="title" ng-class="{active: post.description}">Description</label>
         <input type="text" ng-model="post.description" required>
       </div>
-      <div>
-        <p>Status:</p>
-        <span>
-          <input name="group{{$index}}" type="radio" id="test1" />
-          <label for="test1">Red</label>
-        </span>
-        <span>
-          <input name="group{{$index}}" type="radio" id="test2" />
-          <label for="test2">Yellow</label>
-        </span>
-        <span>
-          <input name="group{{$index}}" type="radio" id="test3"  />
-          <label for="test3">Green</label>
-        </span>
+      <div class="row collapse">
+        <div class="large-4 columns">
+          <p>Status:</p>
+          <select class="browser-default" ng-model="post.status">
+            <option value="new">New</option>
+            <option value="progress">In progress</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div class="large-4 columns">
+          <p>Assign to:</p>
+          
+        </div>
       </div>
-
-
-
-
-
-
       <div class="clearfix">
         <button ng-click="editPost(post);
                 editMode = false" class="left waves-effect waves-teal btn-flat"> Edit</button>
