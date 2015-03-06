@@ -4,7 +4,8 @@
       <a href="#!" class="brand-logo">Todo</a>
       <ul class="right">
         <li><a href="#/account" class="white-text"><i class="fi-torso"></i></a></li>
-        
+        <li ng-show="friendRequests.length > 0"><i class="mdi-action-account-circle"></i> {{friendRequests.length }}</li>
+
         <li><a href="#!" class="white-text" ng-click="callLogout()" id="logout">Logout</a> </li>
       </ul>
     </div>

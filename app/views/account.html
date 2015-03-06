@@ -20,10 +20,27 @@
   <li class="collection-item">
     <div class="input-field">
       <label for="first_name">Enter friend`s name</label>
-      <input id="friend_username" type="text" ng-model="find.username">
+      <input id="friend_username" type="text" ng-model="find.username" ng-keyup="searchFriend()">
     </div>
-    <button class="waves-effect waves-light btn blue darken-1" ng-click="addFriend(find)" ng-disabled="!find.username">
-      add
-    </button>
+    <div ng-repeat="friend in find.foundFriends | filter: find.username">
+      <blockquote>
+        {{friend.username}}
+        <button class="waves-effect waves-light btn-floating darken-1" ng-click="addFriend(friend)" ng-disabled="!find.username">
+          +
+        </button>
+      </blockquote>
+    </div>
+
+
+    <div class="row">
+      <div ng-repeat=" item in friendsList" class="avatar col s3">
+        <span href="#!" class="secondary-content blue-text" ng-click="removeFriend(item.$id)" title="Remove" ><i class="mdi-content-clear"></i></span>
+        <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;f=y">
+        <span class="title">{{item.friendName}}</span>
+        <p ng-show="item.approved == true"> <a href="">Start a chat</a></p>
+        <p ng-show="item.approved == false" class="red white-text"> <i class="mdi-alert-warning"></i> Waiting for approval</p>
+      </div>
+    </div>
+
   </li>
 </ul>
