@@ -45,9 +45,6 @@ angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$loc
   };
 
   $scope.editPost = function (post) {
-
-    console.log(post.uid);
-//      return;
     var fredRef = new Firebase('https://ngtodo-vlad.firebaseio.com/posts/' + post.$id);
     fredRef.update({
       title: post.title,
