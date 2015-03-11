@@ -1,7 +1,7 @@
 <!--<pre>{{userData| json}}</pre>-->
 <ul class="tabs">
   <li class="tab col s3"><a href="#/?filter=new" class="active">New</a></li>
-  <li class="tab col s3"><a href="#/?filter=in-progress">In progress</a></li>
+  <li class="tab col s3"><a href="#/?filter=progress">In progress</a></li>
   <li class="tab col s3"><a href="#/?filter=done">Done</a></li>
   <li class="tab col s3"><a href="#/">Clear</a></li>
 </ul>
@@ -27,16 +27,16 @@
       </div>
       <div class="row collapse">
         <div class="large-4 columns">
-          <p>Status:</p>
-          <select class="browser-default" ng-model="post.status">
+          <label for="status">Status</label>
+          <select class="browser-default" ng-model="post.status" id="status">
             <option value="new">New</option>
             <option value="progress">In progress</option>
             <option value="done">Done</option>
           </select>
         </div>
         <div class="large-4 columns">
-          <p>Assign to:</p>
-          <select ng-model="post.uid" ng-options="friend.friendId as friend.friendName for friend in friendsList" class="browser-default">
+          <label for="assign">Assign to</label>
+          <select ng-model="post.uid" ng-options="friend.friendId as friend.friendName for friend in friendsList" class="browser-default" id="assign">
             <option value="" label="-Assign to user">-Assign to user</option>
           </select>
         </div>

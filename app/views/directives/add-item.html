@@ -14,7 +14,7 @@
           <label for="title">Description</label>
           <input type="text" ng-model="post.description" class="blue-border border-darken-1" required>
         </div>
-        <button class="waves-effect waves-light btn blue darken-1" ng-click="makePostData(post);
+        <button class="waves-effect waves-light btn blue darken-1" ng-click="makePostData();
           addItem = false;" ng-disabled="!post.title || !post.description">Post</button>
       </form>
     </div>

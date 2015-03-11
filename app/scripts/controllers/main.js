@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the ngtodoApp
  */
-angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$location', 'userHandler', '$routeParams', function ($scope, $firebase, $location, userHandler, $routeParams) {
+angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$location', 'userHandler', function ($scope, $firebase, $location, userHandler) {
   var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/posts');
   var refFriend = new Firebase('https://ngtodo-vlad.firebaseio.com/friends');
 
@@ -22,8 +22,8 @@ angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$loc
   $scope.orderBy = $location.search();
   (typeof $scope.orderBy.filter === 'undefined') ? false : $scope.orderBy.filter;
   $scope.posts = $firebase(ref.orderByChild('uid').equalTo($scope.userData.uid)).$asArray();
-
-  $scope.makePostData = function (post) {
+console.log($scope.orderBy);
+  $scope.makePostData = function () {
     ref.push({
       title: $scope.post.title,
       description: $scope.post.description,
