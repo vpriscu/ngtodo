@@ -20,7 +20,7 @@ angular.module('ngtodoApp')
         $scope.userData = ref.getAuth();
         var refFriend = new Firebase('https://ngtodo-vlad.firebaseio.com/friends');
 
-        $scope.friendRequests = $firebase(refFriend.orderByChild('friendId').equalTo($scope.userData.uid)).$asArray();
+        $scope.friendRequests = $firebase(refFriend.orderByChild('approved').equalTo(0)).$asArray();
       }
     };
   });

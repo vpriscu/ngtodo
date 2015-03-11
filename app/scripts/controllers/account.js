@@ -34,7 +34,8 @@ angular.module('ngtodoApp')
       };
 
       // we get all the friends list for the current user.
-      $scope.friendsList =  $firebase(refFriend.orderByChild('uid').equalTo($scope.userData.uid)).$asArray();
+      $scope.friendsList =  $firebase(refFriend.orderByChild('approved').equalTo(1)).$asArray();
+      $scope.friendRequests = $firebase(refFriend.orderByChild('approved').equalTo(0)).$asArray();
 
       $scope.addFriend = function(item) {
         var requestPresent = $filter('filter')($scope.friendsList, {friendId: item.$id, approved: 0});
@@ -59,6 +60,13 @@ angular.module('ngtodoApp')
       $scope.removeFriend = function(id) {
         var refFriendRemove = new Firebase('https://ngtodo-vlad.firebaseio.com/friends/'+id);
         refFriendRemove.remove();
+      }
+      $scope.acceptFriend = function(id) {
+        var refFriendRemove = new Firebase('https://ngtodo-vlad.firebaseio.com/friends/'+id);
+
+        refFriendRemove.update({
+          approved: 1
+        });
       }
       //console.log($scope.friendsList);
     }]);

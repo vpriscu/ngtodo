@@ -9,6 +9,7 @@
  */
 angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$location', 'userHandler', '$routeParams', function ($scope, $firebase, $location, userHandler, $routeParams) {
   var ref = new Firebase('https://ngtodo-vlad.firebaseio.com/posts');
+  var refFriend = new Firebase('https://ngtodo-vlad.firebaseio.com/friends');
 
   $scope.userData = {};
   if (userHandler.AuthStatus() === false) {
@@ -16,11 +17,12 @@ angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$loc
   } else {
     $scope.userData = userHandler.AuthStatus();
   }
+
+  $scope.friendsList =  $firebase(refFriend.orderByChild('uid').equalTo($scope.userData.uid)).$asArray();
   $scope.orderBy = $location.search();
   (typeof $scope.orderBy.filter === 'undefined') ? false : $scope.orderBy.filter;
   $scope.posts = $firebase(ref.orderByChild('uid').equalTo($scope.userData.uid)).$asArray();
 
-//    $scope.firendList = $firebase(ref.orderByChild('uid').equalTo($scope.userData.uid)).$asArray();
   $scope.makePostData = function (post) {
     ref.push({
       title: $scope.post.title,
@@ -44,13 +46,14 @@ angular.module('ngtodoApp').controller('MainCtrl', ['$scope', '$firebase', '$loc
 
   $scope.editPost = function (post) {
 
-    console.info(post);
+    console.log(post.uid);
 //      return;
     var fredRef = new Firebase('https://ngtodo-vlad.firebaseio.com/posts/' + post.$id);
     fredRef.update({
       title: post.title,
       description: post.description,
-      status: post.status
+      status: post.status,
+      uid: post.uid
     });
   };
 

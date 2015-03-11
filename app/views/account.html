@@ -1,5 +1,21 @@
 <!--<pre>{{userData|json}}</pre>-->
 
+<!--<pre>{{friendRequests | json}}</pre>-->
+<!--<pre>{{friendsList|json}}</pre>-->
+<div class="row">
+  <div class="col s12 m6" ng-repeat="request in friendRequests | filter:friendId:userData.uid">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Friend request from <strong>{{request.friendName}}</strong></span>
+        <p> If you know him/her accept the invitation or you can remove it.</p>
+      </div>
+      <div class="card-action">
+        <a href="#/account" ng-click="acceptFriend(request.$id)">Accept</a>
+        <a href='#/account' ng-click="removeFriend(request.$id)">Reject</a>
+      </div>
+    </div>
+  </div>
+</div>
 <ul class="collection with-header">
   <li class="collection-header"><h5>User Information</h5></li>
   <li class="collection-item">Email: {{userData.password.email}}</li>
@@ -25,20 +41,24 @@
     <div ng-repeat="friend in find.foundFriends | filter: find.username">
       <blockquote>
         {{friend.username}}
-        <button class="waves-effect waves-light btn-floating darken-1" ng-click="addFriend(friend)" ng-disabled="!find.username">
+        <button class="waves-effect waves-light btn-floating darken-1" ng-click="addFriend(friend)"
+                ng-disabled="!find.username">
           +
         </button>
       </blockquote>
     </div>
 
-
     <div class="row">
       <div ng-repeat=" item in friendsList" class="avatar col s3">
-        <span href="#!" class="secondary-content blue-text" ng-click="removeFriend(item.$id)" title="Remove" ><i class="mdi-content-clear"></i></span>
+        <span href="#!" class="secondary-content blue-text" ng-click="removeFriend(item.$id)" title="Remove"><i
+                class="mdi-content-clear"></i></span>
         <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;f=y">
         <span class="title">{{item.friendName}}</span>
-        <p ng-show="item.approved == true"> <a href="">Start a chat</a></p>
-        <p ng-show="item.approved == false" class="red white-text"> <i class="mdi-alert-warning"></i> Waiting for approval</p>
+
+        <p ng-show="item.approved == true"><a href="">Start a chat</a></p>
+
+        <p ng-show="item.approved == false ;" class="red white-text"><i class="mdi-alert-warning"></i> Waiting for
+          approval</p>
       </div>
     </div>
 
